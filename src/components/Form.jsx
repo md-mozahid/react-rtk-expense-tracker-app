@@ -4,15 +4,15 @@ const Form = () => {
       <h3>Add new transaction</h3>
 
       <div className="form-group">
-        <label for="transaction_name">Name</label>
+        <label htmlFor="transaction_name">Name</label>
         <input type="text" name="transaction_name" placeholder="My Salary" />
       </div>
 
       <div className="form-group radio">
-        <label for="transaction_type">Type</label>
+        <label htmlFor="transaction_type">Type</label>
         <div className="radio_group">
           <input type="radio" value="income" name="transaction_type" checked />
-          <label for="transaction_type">Income</label>
+          <label htmlFor="transaction_type">Income</label>
         </div>
         <div className="radio_group">
           <input
@@ -21,12 +21,12 @@ const Form = () => {
             name="transaction_type"
             placeholder="Expense"
           />
-          <label for="transaction_type">Expense</label>
+          <label htmlFor="transaction_type">Expense</label>
         </div>
       </div>
 
       <div className="form-group">
-        <label for="transaction_amount">Amount</label>
+        <label htmlFor="transaction_amount">Amount</label>
         <input type="number" placeholder="300" name="transaction_amount" />
       </div>
 
@@ -34,7 +34,7 @@ const Form = () => {
 
       <button className="btn cancel_edit">Cancel Edit</button>
     </div>
-  )
+  );
 }
 
 export default Form
