@@ -1,15 +1,14 @@
-import { useSelector } from "react-redux";
-import DeleteImg from "../../assets/img/delete.svg";
-import EditImg from "../../assets/img/edit.svg";
+import DeleteImg from '../../assets/img/delete.svg'
+import EditImg from '../../assets/img/edit.svg'
 
-const Transaction = () => {
-  const transaction = useSelector((state) => state.transactions);
-  
+const Transaction = ({ transaction }) => {
+  const { name, type, amount } = transaction || {}
+
   return (
-    <li className="transaction income">
-      <p>Earned this month</p>
+    <li className={`transaction ${type}`}>
+      <p>{name}</p>
       <div className="right">
-        <p>৳ 100</p>
+        <p>৳ {amount}</p>
         <button className="link">
           <img className="icon" src={EditImg} />
         </button>
@@ -18,7 +17,7 @@ const Transaction = () => {
         </button>
       </div>
     </li>
-  );
-};
+  )
+}
 
-export default Transaction;
+export default Transaction
