@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createTransaction } from '../features/Transaction/TransactionSlice'
+import {
+  changeTransaction,
+  createTransaction,
+} from '../features/Transaction/TransactionSlice'
 
 const Form = () => {
   const [name, setName] = useState('')
@@ -44,14 +47,31 @@ const Form = () => {
     reset()
   }
 
+  const handleUpdate = (e) => {
+    e.preventDefault()
+    dispatch(
+      changeTransaction({
+        id: editing?.id,
+        data: {
+          name: name,
+          type: type,
+          amount: amount,
+        },
+      })
+    )
+    setEditMode(false)
+    reset()
+  }
+
   const cancelEditMode = () => {
+    reset()
     setEditMode(false)
   }
 
   return (
     <div className="form">
       <h3>Add new transaction</h3>
-      <form onSubmit={handleCreate}>
+      <form onSubmit={editMode ? handleUpdate : handleCreate}>
         <div className="form-group">
           <label>Name</label>
           <input
