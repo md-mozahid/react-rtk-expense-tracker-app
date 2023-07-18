@@ -11,6 +11,24 @@
       "type": "expense",
       "amount": 25,
       "id": 2
+    },
+    {
+      "name": "Salary August",
+      "type": "income",
+      "amount": 25000,
+      "id": 3
+    },
+    {
+      "name": "Md. Mozahid",
+      "type": "expense",
+      "amount": 20,
+      "id": 4
+    },
+    {
+      "name": "item2",
+      "type": "expense",
+      "amount": 25,
+      "id": 5
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createTransaction } from '../features/Transaction/TransactionSlice'
 
@@ -6,10 +6,32 @@ const Form = () => {
   const [name, setName] = useState('')
   const [type, setType] = useState('')
   const [amount, setAmount] = useState('')
+  const [editMode, setEditMode] = useState(false)
 
   const dispatch = useDispatch()
   const { isLoading, isError } = useSelector((state) => state.transaction)
+  const { editing } = useSelector((state) => state.transaction)
 
+  // listen for edit mode active
+  useEffect(() => {
+    const { id, name, type, amount } = editing || {}
+
+    if (id) {
+      setEditMode(true)
+      setName(name)
+      setType(type)
+      setAmount(amount)
+    } else {
+      setEditMode(false)
+      reset()
+    }
+  }, [editing])
+
+  const reset = () => {
+    setName('')
+    setType('')
+    setAmount('')
+  }
   const handleCreate = (e) => {
     e.preventDefault()
     dispatch(
@@ -19,6 +41,11 @@ const Form = () => {
         amount: Number(amount),
       })
     )
+    reset()
+  }
+
+  const cancelEditMode = () => {
+    setEditMode(false)
   }
 
   return (
@@ -77,7 +104,7 @@ const Form = () => {
         </div>
 
         <button className="btn" type="submit" disabled={isLoading}>
-          Add Transaction
+          {editMode ? 'Update Transaction' : 'Add Transaction'}
         </button>
 
         {!isLoading && isError && (
@@ -85,7 +112,11 @@ const Form = () => {
         )}
       </form>
 
-      <button className="btn cancel_edit">Cancel Edit</button>
+      {editMode && (
+        <button className="btn cancel_edit" onClick={cancelEditMode}>
+          Cancel Edit
+        </button>
+      )}
     </div>
   )
 }
