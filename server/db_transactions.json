@@ -1,22 +1,3 @@
 {
-  "transactions": [
-    {
-      "name": "item22",
-      "type": "income",
-      "amount": "250",
-      "id": 1
-    },
-    {
-      "name": "Salary August",
-      "type": "income",
-      "amount": "250000",
-      "id": 3
-    },
-    {
-      "name": "Md. Mozahid",
-      "type": "expense",
-      "amount": 20,
-      "id": 4
-    }
-  ]
+  "transactions": []
 }
